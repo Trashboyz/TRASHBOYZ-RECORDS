@@ -8,12 +8,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
-/* ============ RESET ============ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
   --bg: #0a0a0a;
-  --bg-2: #111111;
   --card: #141414;
   --border: #262626;
   --text: #f5f5f5;
@@ -29,10 +27,8 @@ body {
   color: var(--text);
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
-  position: relative;
 }
 
-/* Textura de grain */
 body::before {
   content: '';
   position: fixed;
@@ -41,10 +37,8 @@ body::before {
   opacity: 0.06;
   pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: overlay;
 }
 
-/* ============ HEADER ============ */
 header {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -53,13 +47,10 @@ header {
   background: rgba(10,10,10,0.85);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  transition: all 0.3s ease;
+  transition: padding 0.3s;
 }
 
-header.scrolled {
-  padding: 0.6rem 2rem;
-  background: rgba(10,10,10,0.95);
-}
+header.scrolled { padding: 0.6rem 2rem; background: rgba(10,10,10,0.95); }
 
 .nav {
   max-width: 1300px;
@@ -75,16 +66,11 @@ header.scrolled {
   letter-spacing: 2px;
   color: var(--text);
   text-decoration: none;
-  transition: color 0.3s;
 }
 
 .nav-logo:hover { color: var(--red); }
 
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
 
 .nav-links a {
   color: var(--muted);
@@ -118,7 +104,6 @@ header.scrolled {
   cursor: pointer;
 }
 
-/* ============ HERO ============ */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -171,7 +156,6 @@ header.scrolled {
   max-width: 600px;
   margin-bottom: 2.5rem;
   line-height: 1.7;
-  letter-spacing: 0.5px;
   position: relative;
   z-index: 1;
 }
@@ -198,14 +182,10 @@ header.scrolled {
   text-decoration: none;
   cursor: pointer;
   border: 2px solid transparent;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
 }
 
-.btn-primary {
-  background: var(--red);
-  color: #fff;
-}
-
+.btn-primary { background: var(--red); color: #fff; }
 .btn-primary:hover {
   background: var(--red-glow);
   box-shadow: 0 0 30px rgba(220,38,38,0.6);
@@ -217,9 +197,385 @@ header.scrolled {
   color: var(--text);
   border-color: var(--border);
 }
+.btn-outline:hover { border-color: var(--red); color: var(--red); transform: translateY(-3px); }
 
-.btn-outline:hover {
-  border-color: var(--red);
-  color: var(--red);
-  transform: translateY(-3px);
+section { padding: 6rem 2rem; max-width: 1300px; margin: 0 auto; }
+
+.section-title {
+  font-family: 'UnifrakturCook', cursive;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  text-align: center;
+  letter-spacing: 3px;
+  margin-bottom: 0.8rem;
 }
+
+.section-sub {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 4rem;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* LOJA */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.product {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s;
+  display: flex;
+  flex-direction: column;
+}
+
+.product:hover {
+  border-color: var(--red);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(220,38,38,0.15);
+}
+
+.product-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: #0a0a0a;
+  transition: transform 0.4s;
+}
+
+.product:hover .product-img { transform: scale(1.05); }
+
+.product-info { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+
+.product-info h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.product-info .price {
+  color: var(--red);
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+}
+
+.btn-buy {
+  background: var(--red);
+  color: #fff;
+  border: none;
+  padding: 0.85rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-buy:hover {
+  background: var(--red-glow);
+  box-shadow: 0 0 25px rgba(220,38,38,0.5);
+}
+
+/* ARTISTAS */
+.artists {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.artist {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.artist:hover {
+  border-color: var(--red);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(220,38,38,0.15);
+}
+
+.artist-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: filter 0.4s;
+}
+
+.artist:hover .artist-img { filter: grayscale(0%); }
+
+.artist-info { padding: 1.5rem; text-align: center; }
+
+.artist-info h3 {
+  font-family: 'UnifrakturCook', cursive;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.4rem;
+}
+
+.artist-info .genre {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.2rem;
+}
+
+.artist-info iframe {
+  border-radius: 12px;
+  margin-top: 0.5rem;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem;
+  text-align: center;
+  background: #060606;
+}
+
+.footer-logo {
+  font-family: 'UnifrakturCook', cursive;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+}
+
+footer p {
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.footer-wpp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--red);
+  text-decoration: none;
+  font-weight: 700;
+  margin: 1rem 0;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.footer-wpp:hover { color: var(--red-glow); }
+
+/* WHATSAPP FLUTUANTE */
+.wpp-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(37,211,102,0.4);
+  z-index: 999;
+  transition: transform 0.3s;
+}
+
+.wpp-float:hover { transform: scale(1.1); }
+
+.wpp-float svg { width: 32px; height: 32px; fill: #fff; }
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    background: rgba(10,10,10,0.98);
+    padding: 2rem;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links.active { display: flex; }
+  .menu-toggle { display: block; }
+  section { padding: 4rem 1.2rem; }
+  header { padding: 1rem 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <nav class="nav">
+    <a href="#" class="nav-logo">TRASHBOYZ</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#loja">Loja</a></li>
+      <li><a href="#artistas">Artistas</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="img/logo.png" alt="TRASHBOYZ RECORDS" class="hero-logo">
+  <h1>TRASHBOYZ RECORDS</h1>
+  <p>Underground trap. Som sujo, identidade pesada. A gravadora que representa o que há de mais real nas ruas.</p>
+  <div class="hero-btns">
+    <a href="#loja" class="btn btn-primary">Ver Loja</a>
+    <a href="#artistas" class="btn btn-outline">Ouvir Artistas</a>
+  </div>
+</section>
+
+<!-- LOJA -->
+<section id="loja">
+  <h2 class="section-title">LOJA</h2>
+  <p class="section-sub">Merch Oficial TRASHBOYZ</p>
+  <div class="products" id="products"></div>
+</section>
+
+<!-- ARTISTAS -->
+<section id="artistas">
+  <h2 class="section-title">ARTISTAS</h2>
+  <p class="section-sub">O Som da Gravadora</p>
+  <div class="artists" id="artists"></div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contato">
+  <div class="footer-logo">TRASHBOYZ RECORDS</div>
+  <p>Underground Trap • Brasil</p>
+  <a href="https://wa.me/5581973139453" class="footer-wpp" target="_blank">
+    📱 (81) 97313-9453
+  </a>
+  <p style="margin-top:1rem; font-size:0.75rem; opacity:0.6;">© 2026 TRASHBOYZ RECORDS — Todos os direitos reservados</p>
+</footer>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a href="https://wa.me/5581973139453" class="wpp-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ============ PRODUTOS ============
+const whatsapp = "5581973139453";
+
+const produtos = [
+  {
+    nome: "Tênis TRASHBOYZ",
+    preco: 467,
+    img: "img/tenis.jpg",
+    desc: "Skate high top preto com caveira"
+  },
+  {
+    nome: "Camiseta TRASHBOYZ",
+    preco: 250,
+    img: "img/camiseta.jpg",
+    desc: "Camiseta preta oversized"
+  },
+  {
+    nome: "Corrente TRASHBOYZ",
+    preco: 4000,
+    img: "img/corrente.jpg",
+    desc: "Corrente dourada cravejada"
+  }
+];
+
+const productsEl = document.getElementById('products');
+
+produtos.forEach(p => {
+  const msg = encodeURIComponent(`Olá! Quero comprar o *${p.nome}* (R$ ${p.preco.toLocaleString('pt-BR')})`);
+  const link = `https://wa.me/${whatsapp}?text=${msg}`;
+  
+  productsEl.innerHTML += `
+    <div class="product">
+      <img src="${p.img}" alt="${p.nome}" class="product-img" onerror="this.style.background='#1a1a1a'; this.alt='${p.nome}';">
+      <div class="product-info">
+        <h3>${p.nome}</h3>
+        <p style="color:var(--muted); font-size:0.85rem; margin-bottom:1rem;">${p.desc}</p>
+        <div class="price">R$ ${p.preco.toLocaleString('pt-BR')},00</div>
+        <a href="${link}" target="_blank" class="btn-buy">Comprar via WhatsApp</a>
+      </div>
+    </div>
+  `;
+});
+
+// ============ ARTISTAS ============
+const artistas = [
+  {
+    nome: "Moldkilla",
+    genero: "Trap • Underground",
+    img: "img/moldkilla.jpg",
+    spotifyId: "6gOh71FXkYA1uYwhhGfVM4"
+  },
+  {
+    nome: "edxward",
+    genero: "Trap BR • 2026",
+    img: "img/edxward.jpg",
+    spotifyId: "5EfBXGEjBZOE8vVXQoEhha"
+  }
+];
+
+const artistsEl = document.getElementById('artists');
+
+artistas.forEach(a => {
+  artistsEl.innerHTML += `
+    <div class="artist">
+      <img src="${a.img}" alt="${a.nome}" class="artist-img">
+      <div class="artist-info">
+        <h3>${a.nome}</h3>
+        <p class="genre">${a.genero}</p>
+        <iframe 
+          style="border-radius:12px" 
+          src="https://open.spotify.com/embed/artist/${a.spotifyId}?utm_source=generator&theme=0" 
+          width="100%" 
+          height="152" 
+          frameBorder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  `;
+});
+
+// ============ MENU MOBILE ============
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navLinks.classList.remove('active'));
+});
+
+// ============ HEADER SCROLL ============
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('header');
+  if (window.scrollY > 50) header.classList.add('scrolled');
+  else header.classList.remove('scrolled');
+});
+</script>
+
+</body>
+</html>
