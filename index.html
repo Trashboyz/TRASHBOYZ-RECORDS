@@ -18,6 +18,7 @@
   --muted: #a3a3a3;
   --red: #dc2626;
   --red-glow: #ef4444;
+  --green: #1db954;
 }
 
 html { scroll-behavior: smooth; }
@@ -104,6 +105,7 @@ header.scrolled { padding: 0.6rem 2rem; background: rgba(10,10,10,0.95); }
   cursor: pointer;
 }
 
+/* HERO */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -172,7 +174,7 @@ header.scrolled { padding: 0.6rem 2rem; background: rgba(10,10,10,0.95); }
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   padding: 0.95rem 2.2rem;
   border-radius: 50px;
   font-weight: 700;
@@ -185,19 +187,30 @@ header.scrolled { padding: 0.6rem 2rem; background: rgba(10,10,10,0.95); }
   transition: all 0.3s;
 }
 
-.btn-primary { background: var(--red); color: #fff; }
-.btn-primary:hover {
-  background: var(--red-glow);
-  box-shadow: 0 0 30px rgba(220,38,38,0.6);
+.btn-spotify {
+  background: var(--green);
+  color: #fff;
+}
+
+.btn-spotify:hover {
+  background: #1ed760;
+  box-shadow: 0 0 30px rgba(29,185,84,0.6);
   transform: translateY(-3px);
 }
+
+.btn-spotify svg { width: 20px; height: 20px; fill: #fff; }
 
 .btn-outline {
   background: transparent;
   color: var(--text);
   border-color: var(--border);
 }
-.btn-outline:hover { border-color: var(--red); color: var(--red); transform: translateY(-3px); }
+
+.btn-outline:hover {
+  border-color: var(--red);
+  color: var(--red);
+  transform: translateY(-3px);
+}
 
 section { padding: 6rem 2rem; max-width: 1300px; margin: 0 auto; }
 
@@ -218,115 +231,68 @@ section { padding: 6rem 2rem; max-width: 1300px; margin: 0 auto; }
   text-transform: uppercase;
 }
 
-/* LOJA */
-.products {
+/* ARTISTAS */
+.artists {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
 }
 
-.product {
+.artist {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   transition: all 0.4s;
   display: flex;
   flex-direction: column;
 }
 
-.product:hover {
-  border-color: var(--red);
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(220,38,38,0.15);
-}
-
-.product-img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  background: #0a0a0a;
-  transition: transform 0.4s;
-}
-
-.product:hover .product-img { transform: scale(1.05); }
-
-.product-info { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
-
-.product-info h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.product-info .price {
-  color: var(--red);
-  font-size: 1.6rem;
-  font-weight: 800;
-  margin-bottom: 1.2rem;
-}
-
-.btn-buy {
-  background: var(--red);
-  color: #fff;
-  border: none;
-  padding: 0.85rem;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  cursor: pointer;
-  transition: all 0.3s;
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.btn-buy:hover {
-  background: var(--red-glow);
-  box-shadow: 0 0 25px rgba(220,38,38,0.5);
-}
-
-/* ARTISTAS */
-.artists {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.artist {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.4s;
-}
-
 .artist:hover {
-  border-color: var(--red);
+  border-color: var(--green);
   transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(220,38,38,0.15);
+  box-shadow: 0 20px 50px rgba(29,185,84,0.15);
+}
+
+.artist-img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
 }
 
 .artist-img {
   width: 100%;
-  aspect-ratio: 1;
+  height: 100%;
   object-fit: cover;
   filter: grayscale(100%);
-  transition: filter 0.4s;
+  transition: filter 0.5s, transform 0.5s;
 }
 
-.artist:hover .artist-img { filter: grayscale(0%); }
+.artist:hover .artist-img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
 
-.artist-info { padding: 1.5rem; text-align: center; }
+.artist-img-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(to top, var(--card), transparent);
+  pointer-events: none;
+}
+
+.artist-info {
+  padding: 1.5rem 1.5rem 2rem;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
 .artist-info h3 {
   font-family: 'UnifrakturCook', cursive;
-  font-size: 2rem;
+  font-size: 2.2rem;
   letter-spacing: 2px;
   margin-bottom: 0.4rem;
 }
@@ -336,13 +302,38 @@ section { padding: 6rem 2rem; max-width: 1300px; margin: 0 auto; }
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
 .artist-info iframe {
   border-radius: 12px;
-  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
+
+.btn-artist-spotify {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--green);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  transition: all 0.3s;
+  margin-top: auto;
+}
+
+.btn-artist-spotify:hover {
+  background: #1ed760;
+  box-shadow: 0 0 25px rgba(29,185,84,0.5);
+}
+
+.btn-artist-spotify svg { width: 16px; height: 16px; fill: #fff; }
 
 /* FOOTER */
 footer {
@@ -364,41 +355,6 @@ footer p {
   font-size: 0.85rem;
   letter-spacing: 1px;
 }
-
-.footer-wpp {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--red);
-  text-decoration: none;
-  font-weight: 700;
-  margin: 1rem 0;
-  letter-spacing: 1px;
-  transition: color 0.3s;
-}
-
-.footer-wpp:hover { color: var(--red-glow); }
-
-/* WHATSAPP FLUTUANTE */
-.wpp-float {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  width: 60px;
-  height: 60px;
-  background: #25d366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 30px rgba(37,211,102,0.4);
-  z-index: 999;
-  transition: transform 0.3s;
-}
-
-.wpp-float:hover { transform: scale(1.1); }
-
-.wpp-float svg { width: 32px; height: 32px; fill: #fff; }
 
 /* RESPONSIVO */
 @media (max-width: 768px) {
@@ -425,9 +381,8 @@ footer p {
   <nav class="nav">
     <a href="#" class="nav-logo">TRASHBOYZ</a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#loja">Loja</a></li>
       <li><a href="#artistas">Artistas</a></li>
-      <li><a href="#contato">Contato</a></li>
+      <li><a href="#sobre">Sobre</a></li>
     </ul>
     <button class="menu-toggle" id="menuToggle">☰</button>
   </nav>
@@ -439,16 +394,12 @@ footer p {
   <h1>TRASHBOYZ RECORDS</h1>
   <p>Underground trap. Som sujo, identidade pesada. A gravadora que representa o que há de mais real nas ruas.</p>
   <div class="hero-btns">
-    <a href="#loja" class="btn btn-primary">Ver Loja</a>
-    <a href="#artistas" class="btn btn-outline">Ouvir Artistas</a>
+    <a href="#artistas" class="btn btn-spotify">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      Ouvir no Spotify
+    </a>
+    <a href="#sobre" class="btn btn-outline">Sobre a Gravadora</a>
   </div>
-</section>
-
-<!-- LOJA -->
-<section id="loja">
-  <h2 class="section-title">LOJA</h2>
-  <p class="section-sub">Merch Oficial TRASHBOYZ</p>
-  <div class="products" id="products"></div>
 </section>
 
 <!-- ARTISTAS -->
@@ -458,65 +409,25 @@ footer p {
   <div class="artists" id="artists"></div>
 </section>
 
+<!-- SOBRE -->
+<section id="sobre">
+  <h2 class="section-title">SOBRE</h2>
+  <p class="section-sub">A Gravadora</p>
+  <p style="max-width:800px; margin:0 auto; text-align:center; color:var(--muted); line-height:2; font-size:1.05rem;">
+    A <strong style="color:var(--text);">TRASHBOYZ RECORDS</strong> é um selo independente dedicado ao trap underground brasileiro.
+    Representamos artistas que trazem a essência crua das ruas, com som pesado, identidade forte e autenticidade.
+    Nosso compromisso é com a cultura, com o som real e com quem vive o underground de verdade.
+  </p>
+</section>
+
 <!-- FOOTER -->
-<footer id="contato">
+<footer>
   <div class="footer-logo">TRASHBOYZ RECORDS</div>
   <p>Underground Trap • Brasil</p>
-  <a href="https://wa.me/5581973139453" class="footer-wpp" target="_blank">
-    📱 (81) 97313-9453
-  </a>
   <p style="margin-top:1rem; font-size:0.75rem; opacity:0.6;">© 2026 TRASHBOYZ RECORDS — Todos os direitos reservados</p>
 </footer>
 
-<!-- WHATSAPP FLUTUANTE -->
-<a href="https://wa.me/5581973139453" class="wpp-float" target="_blank" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
-
 <script>
-// ============ PRODUTOS ============
-const whatsapp = "5581973139453";
-
-const produtos = [
-  {
-    nome: "Tênis TRASHBOYZ",
-    preco: 467,
-    img: "img/tenis.jpg",
-    desc: "Skate high top preto com caveira"
-  },
-  {
-    nome: "Camiseta TRASHBOYZ",
-    preco: 250,
-    img: "img/camiseta.jpg",
-    desc: "Camiseta preta oversized"
-  },
-  {
-    nome: "Corrente TRASHBOYZ",
-    preco: 4000,
-    img: "img/corrente.jpg",
-    desc: "Corrente dourada cravejada"
-  }
-];
-
-const productsEl = document.getElementById('products');
-
-produtos.forEach(p => {
-  const msg = encodeURIComponent(`Olá! Quero comprar o *${p.nome}* (R$ ${p.preco.toLocaleString('pt-BR')})`);
-  const link = `https://wa.me/${whatsapp}?text=${msg}`;
-  
-  productsEl.innerHTML += `
-    <div class="product">
-      <img src="${p.img}" alt="${p.nome}" class="product-img" onerror="this.style.background='#1a1a1a'; this.alt='${p.nome}';">
-      <div class="product-info">
-        <h3>${p.nome}</h3>
-        <p style="color:var(--muted); font-size:0.85rem; margin-bottom:1rem;">${p.desc}</p>
-        <div class="price">R$ ${p.preco.toLocaleString('pt-BR')},00</div>
-        <a href="${link}" target="_blank" class="btn-buy">Comprar via WhatsApp</a>
-      </div>
-    </div>
-  `;
-});
-
 // ============ ARTISTAS ============
 const artistas = [
   {
@@ -538,7 +449,9 @@ const artistsEl = document.getElementById('artists');
 artistas.forEach(a => {
   artistsEl.innerHTML += `
     <div class="artist">
-      <img src="${a.img}" alt="${a.nome}" class="artist-img">
+      <div class="artist-img-wrap">
+        <img src="${a.img}" alt="${a.nome}" class="artist-img">
+      </div>
       <div class="artist-info">
         <h3>${a.nome}</h3>
         <p class="genre">${a.genero}</p>
@@ -552,6 +465,10 @@ artistas.forEach(a => {
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
           loading="lazy">
         </iframe>
+        <a href="https://open.spotify.com/artist/${a.spotifyId}" target="_blank" class="btn-artist-spotify">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          Ver Perfil
+        </a>
       </div>
     </div>
   `;
